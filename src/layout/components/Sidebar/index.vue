@@ -8,6 +8,7 @@
         :text-color="variables.menuText" :unique-opened="false" :active-text-color="variables.menuActiveText"
         :collapse-transition="false" mode="vertical">
         <!-- sidebar-item每一大项的左侧菜单项 -->
+        <!-- 这个 permission_routes实际上是asyncRoutes和constantRotes合并生成的路由表（经过权限判断以后得到的路由表） -->
         <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
@@ -28,6 +29,10 @@ export default {
       'permission_routes',
       'sidebar'
     ]),
+    /**
+     * 这里使用activeMenu变量设置默认激活地址，通过this.$route获取当前地址。判断meta中是否有activeMenu属性，
+     * 有则将meta.activeMenu设为默认激活地址，否则直接将获取的path设为默认地址，这样刷新页面时可缓存当前页面不会变更。
+     */
     activeMenu() {
       const route = this.$route
       const { meta, path } = route

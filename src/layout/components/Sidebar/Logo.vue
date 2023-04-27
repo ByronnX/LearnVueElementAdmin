@@ -12,7 +12,7 @@
     <transition name="sidebarLogoFade">
       <!-- 如果collapse为true 则运行这里 -->
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <!-- 如果折叠了 并且有logo这个变量 则显示logo 否则只显示title -->
+        <!-- 如果折叠了 并且有logo这个变量 则显示logo 否则折叠了但是没有logo就只显示title -->
         <img v-if="logo" :src="logo" class="sidebar-logo">
         <h1 v-else class="sidebar-title">{{ title }} </h1>
       </router-link>
